@@ -8,7 +8,11 @@
 
   /* ---------- Cabecera: cambia al hacer scroll ---------- */
   var head = document.getElementById('site-head');
-  function onScroll() { head.classList.toggle('is-scrolled', window.scrollY > 40); }
+  var wa = document.querySelector('.wa');
+  function onScroll() {
+    head.classList.toggle('is-scrolled', window.scrollY > 40);
+    if (wa) wa.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.7);
+  }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
