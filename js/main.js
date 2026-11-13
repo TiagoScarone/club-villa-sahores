@@ -11,7 +11,7 @@
   var wa = document.querySelector('.wa');
   function onScroll() {
     head.classList.toggle('is-scrolled', window.scrollY > 40);
-    if (wa) wa.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.7);
+    if (wa) wa.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.5);
   }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -57,7 +57,7 @@
       if (e.target.closest('a') && nav.classList.contains('is-open')) setMenu(false);
     });
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 1180 && nav.classList.contains('is-open')) setMenu(false);
+      if (window.innerWidth > 1080 && nav.classList.contains('is-open')) setMenu(false);
     });
   }
 
@@ -70,40 +70,20 @@
     else cerrarSubs();
   });
 
-  /* ---------- Hero: fotos que van pasando ----------
-     La barra de progreso de cada foto marca el tiempo:
-     cuando termina su animación, pasa a la siguiente. */
+  /* ---------- Hero: fotos de fondo que van pasando solas ----------
+     Fundido suave cada 7 s. Con "reducir movimiento" queda la primera. */
   var hero = document.querySelector('.hero');
   if (hero) {
     var slides = hero.querySelectorAll('.hero__slide');
-    var dots = hero.querySelectorAll('.hero__dot');
-    var pauseBtn = hero.querySelector('.hero__pause');
     var actual = 0;
-
-    var mostrar = function (i) {
-      actual = (i + slides.length) % slides.length;
-      slides.forEach(function (s, k) { s.classList.toggle('is-active', k === actual); });
-      dots.forEach(function (d, k) {
-        d.classList.remove('is-active');
-        d.setAttribute('aria-current', k === actual ? 'true' : 'false');
-      });
-      void dots[actual].offsetWidth; // reinicia la barra
-      dots[actual].classList.add('is-active');
-    };
-
-    dots.forEach(function (d, k) {
-      d.addEventListener('click', function () { mostrar(k); });
-      d.addEventListener('animationend', function () { if (k === actual) mostrar(actual + 1); });
-    });
-
-    if (pauseBtn) {
-      pauseBtn.addEventListener('click', function () {
-        var paused = hero.classList.toggle('is-paused');
-        pauseBtn.setAttribute('aria-label', paused ? 'Reanudar fotos' : 'Pausar fotos');
-        pauseBtn.setAttribute('aria-pressed', String(paused));
-      });
+    if (slides.length > 1 && !reduce) {
+      setInterval(function () {
+        if (document.hidden) return;
+        slides[actual].classList.remove('is-active');
+        actual = (actual + 1) % slides.length;
+        slides[actual].classList.add('is-active');
+      }, 7000);
     }
-
     requestAnimationFrame(function () { hero.classList.add('is-ready'); });
   }
 
@@ -172,27 +152,34 @@
   }
 
   /* ---------- Carrusel "Así está Sahores hoy" ----------
-     Se mueve solo cada 4,5 s; se detiene al pasar el mouse, al tocarlo
-     o con el botón de pausa. También se puede deslizar o usar las flechas. */
+     Las fotos se agrupan por espacio (atributo data-space de cada <figure>).
+     Los botones de espacios se arman solos: para sumar un espacio nuevo
+     alcanza con agregar fotos con otro data-space. */
   var carousel = document.querySelector('.carousel');
   if (carousel) {
     var track = carousel.querySelector('.carousel__track');
-    var items = carousel.querySelectorAll('.slide');
-    var countEl = carousel.querySelector('.carousel__count b');
+    var all = Array.prototype.slice.call(carousel.querySelectorAll('.slide'));
+    var countEl = carousel.querySelector('.carousel__count');
     var progress = carousel.querySelector('.carousel__progress span');
-    var autoBtn = carousel.querySelector('.carousel__auto');
-    var cur = 0;
-    var autoOn = !reduce;
-    var hover = false;
-    var visible = !hasIO;
-    var tick;
+    var spacesEl = document.querySelector('.spaces');
+    var items = all;
+    var cur = -1;
 
-    var centrar = function (i) {
-      var s = items[(i + items.length) % items.length];
+    var centrar = function (i, instant) {
+      var s = items[Math.max(0, Math.min(items.length - 1, i))];
+      if (!s) return;
       track.scrollTo({
         left: s.offsetLeft - (track.clientWidth - s.clientWidth) / 2,
-        behavior: reduce ? 'auto' : 'smooth'
+        behavior: reduce || instant ? 'auto' : 'smooth'
       });
+    };
+
+    var pintar = function () {
+      all.forEach(function (s) { s.classList.toggle('is-current', s === items[cur]); });
+      countEl.innerHTML = '<b>' + String(cur + 1).padStart(2, '0') + '</b><span> / ' + String(items.length).padStart(2, '0') + '</span>';
+      progress.style.setProperty('--p', ((cur + 1) / items.length * 100) + '%');
+      prev.disabled = cur <= 0;
+      next.disabled = cur >= items.length - 1;
     };
 
     var actualizar = function () {
@@ -202,11 +189,9 @@
         var d = Math.abs(s.offsetLeft + s.clientWidth / 2 - mid);
         if (d < dist) { dist = d; best = k; }
       });
-      if (best === cur && items[cur].classList.contains('is-current')) return;
+      if (best === cur) return;
       cur = best;
-      items.forEach(function (s, k) { s.classList.toggle('is-current', k === cur); });
-      countEl.textContent = String(cur + 1).padStart(2, '0');
-      progress.style.setProperty('--p', ((cur + 1) / items.length * 100) + '%');
+      pintar();
     };
 
     var raf;
@@ -215,44 +200,71 @@
       raf = requestAnimationFrame(actualizar);
     }, { passive: true });
 
-    carousel.querySelector('.carousel__prev').addEventListener('click', function () { centrar(cur - 1); reiniciar(); });
-    carousel.querySelector('.carousel__next').addEventListener('click', function () { centrar(cur + 1); reiniciar(); });
+    var prev = carousel.querySelector('.carousel__prev');
+    var next = carousel.querySelector('.carousel__next');
+    prev.addEventListener('click', function () { centrar(cur - 1); });
+    next.addEventListener('click', function () { centrar(cur + 1); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); centrar(cur - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); centrar(cur + 1); }
+    });
 
-    carousel.addEventListener('mouseenter', function () { hover = true; });
-    carousel.addEventListener('mouseleave', function () { hover = false; });
-    carousel.addEventListener('focusin', function () { hover = true; });
-    carousel.addEventListener('focusout', function () { hover = false; });
-    track.addEventListener('pointerdown', function () { reiniciar(); });
-
-    var reiniciar = function () {
-      clearInterval(tick);
-      if (autoOn) {
-        tick = setInterval(function () {
-          if (!hover && visible && !document.hidden) centrar(cur + 1);
-        }, 4500);
-      }
+    var filtrar = function (espacio) {
+      items = all.filter(function (s) { return !espacio || s.dataset.space === espacio; });
+      all.forEach(function (s) { s.hidden = items.indexOf(s) === -1; });
+      cur = -1;
+      centrar(0, true);
+      actualizar();
     };
 
-    if (autoBtn) {
-      var syncAuto = function () {
-        carousel.classList.toggle('is-paused', !autoOn);
-        autoBtn.setAttribute('aria-label', autoOn ? 'Pausar carrusel' : 'Reproducir carrusel');
-        autoBtn.setAttribute('aria-pressed', String(!autoOn));
+    if (spacesEl) {
+      var nombres = [];
+      all.forEach(function (s) { if (nombres.indexOf(s.dataset.space) === -1) nombres.push(s.dataset.space); });
+      var chips = [];
+      var crearChip = function (label, espacio, n) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'chip';
+        b.setAttribute('aria-pressed', 'false');
+        b.innerHTML = label + ' <span>' + n + '</span>';
+        b.addEventListener('click', function () {
+          chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === b)); });
+          filtrar(espacio);
+        });
+        spacesEl.appendChild(b);
+        chips.push(b);
       };
-      autoBtn.addEventListener('click', function () { autoOn = !autoOn; syncAuto(); reiniciar(); });
-      syncAuto();
+      crearChip('Todos', null, all.length);
+      nombres.forEach(function (n) {
+        crearChip(n, n, all.filter(function (s) { return s.dataset.space === n; }).length);
+      });
+      chips[0].setAttribute('aria-pressed', 'true');
     }
 
-    if (hasIO) {
-      new IntersectionObserver(function (entries) {
-        visible = entries[0].isIntersecting;
-      }, { threshold: 0.3 }).observe(carousel);
-    }
-
-    window.addEventListener('resize', function () { centrar(cur); });
+    window.addEventListener('resize', function () { centrar(cur, true); });
     actualizar();
-    reiniciar();
   }
+
+  /* ---------- Cintas infinitas (actividades y sponsors) ----------
+     Repite el grupo hasta cubrir dos anchos de pantalla, así la cinta
+     nunca muestra un hueco, y se desplaza la mitad del total. */
+  document.querySelectorAll('.band__track, .logos__track').forEach(function (t) {
+    var grupos = t.children;
+    if (!grupos.length) return;
+    var base = grupos[0];
+    while (t.children.length > 1) t.removeChild(t.lastChild);
+    var ancho = base.getBoundingClientRect().width || 1;
+    var copias = Math.max(2, Math.ceil((window.innerWidth * 2) / ancho));
+    if (copias % 2) copias++;
+    for (var i = 1; i < copias; i++) {
+      var c = base.cloneNode(true);
+      c.setAttribute('aria-hidden', 'true');
+      c.querySelectorAll('a').forEach(function (a) { a.tabIndex = -1; });
+      c.querySelectorAll('img').forEach(function (img) { img.alt = ''; });
+      t.appendChild(c);
+    }
+    t.style.setProperty('--dur', (ancho * copias / 2 / 45) + 's');
+  });
 
   /* ---------- Copiar alias / CBU ---------- */
   document.querySelectorAll('.copy').forEach(function (btn) {
@@ -282,17 +294,6 @@
       }
     });
   });
-
-  /* ---------- Temporada vigente del horario de atención ----------
-     Dic a feb: verano · Mar a nov: resto del año (hora de Buenos Aires). */
-  try {
-    var mes = Number(new Intl.DateTimeFormat('en-US', {
-      timeZone: 'America/Argentina/Buenos_Aires', month: 'numeric'
-    }).format(new Date()));
-    var verano = mes === 12 || mes <= 2;
-    var card = document.querySelector('.hours__card[data-season="' + (verano ? 'verano' : 'invierno') + '"]');
-    if (card) card.classList.add('is-current');
-  } catch (err) { /* sin Intl: no se marca la temporada */ }
 
   /* ---------- Año del footer ---------- */
   var anio = document.getElementById('anio');
