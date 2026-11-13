@@ -151,98 +151,192 @@
     }
   }
 
-  /* ---------- Carrusel "Así está Sahores hoy" ----------
-     Las fotos se agrupan por espacio (atributo data-space de cada <figure>).
-     Los botones de espacios se arman solos: para sumar un espacio nuevo
-     alcanza con agregar fotos con otro data-space. */
-  var carousel = document.querySelector('.carousel');
-  if (carousel) {
-    var track = carousel.querySelector('.carousel__track');
-    var all = Array.prototype.slice.call(carousel.querySelectorAll('.slide'));
-    var countEl = carousel.querySelector('.carousel__count');
-    var progress = carousel.querySelector('.carousel__progress span');
-    var spacesEl = document.querySelector('.spaces');
-    var items = all;
-    var cur = -1;
-
-    var centrar = function (i, instant) {
-      var s = items[Math.max(0, Math.min(items.length - 1, i))];
-      if (!s) return;
-      track.scrollTo({
-        left: s.offsetLeft - (track.clientWidth - s.clientWidth) / 2,
-        behavior: reduce || instant ? 'auto' : 'smooth'
-      });
+  /* ---------- Galería "Así está Sahores hoy" ----------
+     Datos en <script id="gal-data">: espacios con sus fotos.
+     Pasa sola cada 3,2 s y al terminar un espacio sigue con el próximo.
+     Se frena con el mouse encima, con foco o fuera de pantalla. */
+  var galEl = document.querySelector('.gal');
+  var galData = document.getElementById('gal-data');
+  if (galEl && galData) {
+    var ICONS = {
+      front: '<path d="M3 21h18M5 21V8l7-4 7 4v13"/><path d="M10 21v-6h4v6M9 11h.01M15 11h.01"/>',
+      pool: '<path d="M2 18c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><path d="M8 14.5V6a2 2 0 0 1 4 0M14 14.5V6a2 2 0 0 1 4 0M8 9.5h6M8 12.5h6"/>',
+      court: '<rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M12 5v14"/><circle cx="12" cy="12" r="2.5"/><path d="M3 9.5h3v5H3M21 9.5h-3v5h3"/>',
+      gym3: '<path d="M4 20V9l8-5 8 5v11"/><path d="M4 20h16M9 20v-5h6v5"/><path d="M8 11h8"/>',
+      gym4: '<path d="M7 10.5V7a4 4 0 0 1 8 0v1.5a3 3 0 0 1 3 3V14a6 6 0 0 1-6 6h-1a5 5 0 0 1-5-5v-1.5a2.5 2.5 0 0 1 1-2z"/><path d="M7 13h6M15 8.5v3"/>',
+      fitness: '<path d="M6.5 7v10M17.5 7v10M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/>',
+      salon: '<path d="M12 3v3M5.6 5.6l2.1 2.1M18.4 5.6l-2.1 2.1"/><path d="M4 21h16M6 21v-6a6 6 0 0 1 12 0v6"/>',
+      grill: '<path d="M5 10h14a7 7 0 0 1-14 0z"/><path d="M8 21l2-4M16 21l-2-4M12 3c1 1 1 2 0 3M8.5 4c.8.8.8 1.6 0 2.4M15.5 4c.8.8.8 1.6 0 2.4"/>'
     };
+    var spaces = JSON.parse(galData.textContent);
+    var spacesEl = galEl.querySelector('.gal__spaces');
+    var imgs = galEl.querySelectorAll('.gal__img');
+    var capB = galEl.querySelector('.gal__cap b');
+    var capN = galEl.querySelector('.gal__cap span');
+    var thumbsEl = galEl.querySelector('.gal__thumbs');
+    var timer = galEl.querySelector('.gal__timer');
+    var url = function (id, w, h) { return 'https://static.wixstatic.com/media/' + id + '/v1/fill/w_' + w + ',h_' + h + ',al_c,q_80,enc_auto/sahores.jpg'; };
+    var big = window.innerWidth < 700 ? [900, 675] : [1400, 875];
+    var sp = 0, ph = 0, front = 0, hold = false, onScreen = !hasIO, auto = !reduce;
+    var DUR = 3200, t0 = 0, raf2;
 
-    var pintar = function () {
-      all.forEach(function (s) { s.classList.toggle('is-current', s === items[cur]); });
-      countEl.innerHTML = '<b>' + String(cur + 1).padStart(2, '0') + '</b><span> / ' + String(items.length).padStart(2, '0') + '</span>';
-      progress.style.setProperty('--p', ((cur + 1) / items.length * 100) + '%');
-      prev.disabled = cur <= 0;
-      next.disabled = cur >= items.length - 1;
-    };
-
-    var actualizar = function () {
-      var mid = track.scrollLeft + track.clientWidth / 2;
-      var best = 0, dist = Infinity;
-      items.forEach(function (s, k) {
-        var d = Math.abs(s.offsetLeft + s.clientWidth / 2 - mid);
-        if (d < dist) { dist = d; best = k; }
-      });
-      if (best === cur) return;
-      cur = best;
-      pintar();
-    };
-
-    var raf;
-    track.addEventListener('scroll', function () {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(actualizar);
-    }, { passive: true });
-
-    var prev = carousel.querySelector('.carousel__prev');
-    var next = carousel.querySelector('.carousel__next');
-    prev.addEventListener('click', function () { centrar(cur - 1); });
-    next.addEventListener('click', function () { centrar(cur + 1); });
-    track.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); centrar(cur - 1); }
-      if (e.key === 'ArrowRight') { e.preventDefault(); centrar(cur + 1); }
+    var btns = spaces.map(function (s, k) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'space'; b.setAttribute('role', 'tab');
+      b.innerHTML = '<span class="space__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[s.icon] || ICONS.front) + '</svg></span>' +
+        '<span class="space__name">' + s.name + '</span><span class="space__n">' + s.photos.length + '</span><span class="space__bar"><span></span></span>';
+      b.addEventListener('click', function () { ir(k, 0); });
+      spacesEl.appendChild(b);
+      return b;
     });
 
-    var filtrar = function (espacio) {
-      items = all.filter(function (s) { return !espacio || s.dataset.space === espacio; });
-      all.forEach(function (s) { s.hidden = items.indexOf(s) === -1; });
-      cur = -1;
-      centrar(0, true);
-      actualizar();
+    var pintarThumbs = function () {
+      thumbsEl.innerHTML = '';
+      spaces[sp].photos.forEach(function (f, k) {
+        var t = document.createElement('button');
+        t.type = 'button'; t.className = 'gal__thumb';
+        t.setAttribute('aria-label', 'Foto ' + (k + 1) + ': ' + f.alt);
+        t.innerHTML = '<img src="' + url(f.id, 176, 132) + '" alt="" loading="lazy" width="88" height="66">';
+        t.addEventListener('click', function () { ir(sp, k); });
+        thumbsEl.appendChild(t);
+      });
     };
 
-    if (spacesEl) {
-      var nombres = [];
-      all.forEach(function (s) { if (nombres.indexOf(s.dataset.space) === -1) nombres.push(s.dataset.space); });
-      var chips = [];
-      var crearChip = function (label, espacio, n) {
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'chip';
-        b.setAttribute('aria-pressed', 'false');
-        b.innerHTML = label + ' <span>' + n + '</span>';
-        b.addEventListener('click', function () {
-          chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === b)); });
-          filtrar(espacio);
-        });
-        spacesEl.appendChild(b);
-        chips.push(b);
-      };
-      crearChip('Todos', null, all.length);
-      nombres.forEach(function (n) {
-        crearChip(n, n, all.filter(function (s) { return s.dataset.space === n; }).length);
-      });
-      chips[0].setAttribute('aria-pressed', 'true');
-    }
+    var precargar = function (s, p) {
+      var f = spaces[s] && spaces[s].photos[p];
+      if (f) { var i = new Image(); i.src = url(f.id, big[0], big[1]); }
+    };
 
-    window.addEventListener('resize', function () { centrar(cur, true); });
-    actualizar();
+    var arrancarTimer = function () {
+      timer.classList.remove('is-run'); void timer.offsetWidth;
+      if (auto) { timer.style.setProperty('--t', DUR + 'ms'); timer.classList.add('is-run'); }
+    };
+
+    var ir = function (s, p, user) {
+      var cambioEspacio = s !== sp || !thumbsEl.children.length;
+      sp = (s + spaces.length) % spaces.length; ph = p;
+      var f = spaces[sp].photos[ph];
+      var next = imgs[1 - front];
+      next.src = url(f.id, big[0], big[1]); next.alt = f.alt;
+      var mostrar = function () { imgs[front].classList.remove('is-on'); next.classList.add('is-on'); front = 1 - front; };
+      if (next.complete && next.naturalWidth) mostrar(); else { next.onload = mostrar; next.onerror = mostrar; }
+      capB.textContent = spaces[sp].name;
+      capN.textContent = (ph + 1) + ' / ' + spaces[sp].photos.length;
+      btns.forEach(function (b, k) {
+        b.setAttribute('aria-selected', String(k === sp));
+        b.tabIndex = k === sp ? 0 : -1;
+        b.querySelector('.space__bar span').style.setProperty('--p', k === sp ? ((ph + 1) / spaces[sp].photos.length * 100) + '%' : '0%');
+      });
+      if (cambioEspacio) {
+        pintarThumbs();
+        if (spacesEl.scrollWidth > spacesEl.clientWidth) spacesEl.scrollTo({ left: btns[sp].offsetLeft - spacesEl.clientWidth / 2 + btns[sp].clientWidth / 2, behavior: reduce ? 'auto' : 'smooth' });
+      }
+      Array.prototype.forEach.call(thumbsEl.children, function (t, k) {
+        t.setAttribute('aria-current', String(k === ph));
+        if (k === ph) thumbsEl.scrollTo({ left: t.offsetLeft - thumbsEl.clientWidth / 2 + t.clientWidth / 2, behavior: reduce ? 'auto' : 'smooth' });
+      });
+      var n = ph + 1 < spaces[sp].photos.length ? [sp, ph + 1] : [sp + 1, 0];
+      precargar(n[0] % spaces.length, n[1]);
+      t0 = performance.now();
+      arrancarTimer();
+    };
+
+    var siguiente = function () { if (ph + 1 < spaces[sp].photos.length) ir(sp, ph + 1); else ir(sp + 1, 0); };
+    var anterior = function () { if (ph > 0) ir(sp, ph - 1); else ir(sp - 1, spaces[(sp - 1 + spaces.length) % spaces.length].photos.length - 1); };
+    galEl.querySelector('.gal__arrow--next').addEventListener('click', siguiente);
+    galEl.querySelector('.gal__arrow--prev').addEventListener('click', anterior);
+    spacesEl.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); ir(sp + 1, 0); btns[sp].focus(); }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); ir(sp - 1, 0); btns[sp].focus(); }
+    });
+
+    // swipe en la foto
+    var x0 = null;
+    var view = galEl.querySelector('.gal__view');
+    view.addEventListener('pointerdown', function (e) { x0 = e.clientX; });
+    view.addEventListener('pointerup', function (e) {
+      if (x0 === null) return;
+      var dx = e.clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) { if (dx < 0) siguiente(); else anterior(); }
+    });
+
+    var setHold = function (v) {
+      hold = v;
+      galEl.classList.toggle('is-hold', hold || !onScreen);
+    };
+    galEl.addEventListener('mouseenter', function () { setHold(true); });
+    galEl.addEventListener('mouseleave', function () { setHold(false); });
+    galEl.addEventListener('focusin', function () { setHold(true); });
+    galEl.addEventListener('focusout', function () { setHold(false); });
+
+    // reloj: avanza solo cuando corresponde (el tiempo en pausa no cuenta)
+    var ultimo = performance.now(), acumulado = 0;
+    var loop = function (now) {
+      var dt = now - ultimo; ultimo = now;
+      if (auto && !hold && onScreen && !document.hidden) {
+        acumulado += dt;
+        if (acumulado >= DUR) { acumulado = 0; siguiente(); }
+      }
+      raf2 = requestAnimationFrame(loop);
+    };
+    var irOriginal = ir;
+    ir = function (s, p) { acumulado = 0; irOriginal(s, p); };
+
+    if (hasIO) {
+      new IntersectionObserver(function (en) {
+        onScreen = en[0].isIntersecting;
+        galEl.classList.toggle('is-hold', hold || !onScreen);
+      }, { threshold: 0.35 }).observe(galEl);
+    }
+    ir(0, 0);
+    if (auto) raf2 = requestAnimationFrame(loop);
+  }
+
+  /* ---------- Escudo-moneda del hero: gira con el mouse ---------- */
+  var coin = document.getElementById('coin');
+  if (coin) {
+    var edge = coin.querySelector('.coin__edge');
+    var GROSOR = 18;
+    for (var c = 1; c <= GROSOR; c++) {
+      var capa = document.createElement('i');
+      capa.style.transform = 'translateZ(' + (-c) + 'px)';
+      edge.appendChild(capa);
+    }
+    var lines = document.querySelector('.hero__lines');
+    var heroEl = document.querySelector('.hero');
+    var finePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+    if (reduce) {
+      coin.style.setProperty('--ry', '-10deg');
+    } else if (!finePointer) {
+      coin.classList.add('is-idle');
+    } else {
+      var target = { x: 0, y: 0 }, curr = { x: 0, y: 0 }, activo = false, rafC;
+      coin.classList.add('is-idle');
+      var animar = function () {
+        curr.x += (target.x - curr.x) * 0.08;
+        curr.y += (target.y - curr.y) * 0.08;
+        coin.style.setProperty('--ry', (curr.x * 34) + 'deg');
+        coin.style.setProperty('--rx', (-curr.y * 26) + 'deg');
+        coin.style.setProperty('--sx', (35 - curr.x * 30) + '%');
+        coin.style.setProperty('--sy', (25 - curr.y * 25) + '%');
+        coin.parentNode.style.setProperty('--shx', -curr.x * 14);
+        if (lines) { lines.style.setProperty('--lx', (-curr.x * 14) + 'px'); lines.style.setProperty('--ly', (-curr.y * 10) + 'px'); }
+        if (activo || Math.abs(target.x - curr.x) > 0.001 || Math.abs(target.y - curr.y) > 0.001) rafC = requestAnimationFrame(animar);
+        else rafC = null;
+      };
+      heroEl.addEventListener('pointermove', function (e) {
+        var r = heroEl.getBoundingClientRect();
+        target.x = Math.max(-1, Math.min(1, (e.clientX - r.left) / r.width * 2 - 1));
+        target.y = Math.max(-1, Math.min(1, (e.clientY - r.top) / r.height * 2 - 1));
+        if (!activo) { activo = true; coin.classList.remove('is-idle'); }
+        if (!rafC) rafC = requestAnimationFrame(animar);
+      });
+      heroEl.addEventListener('pointerleave', function () {
+        activo = false; target.x = 0; target.y = 0;
+        if (!rafC) rafC = requestAnimationFrame(animar);
+        setTimeout(function () { if (!activo) coin.classList.add('is-idle'); }, 900);
+      });
+    }
   }
 
   /* ---------- Cintas infinitas (actividades y sponsors) ----------
@@ -264,6 +358,34 @@
       t.appendChild(c);
     }
     t.style.setProperty('--dur', (ancho * copias / 2 / 45) + 's');
+  });
+
+  /* ---------- Videos verticales de las páginas de actividades ---------- */
+  document.querySelectorAll('.sport-video').forEach(function (box) {
+    var v = box.querySelector('video');
+    var play = box.querySelector('.sport-video__play');
+    var snd = box.querySelector('.sport-video__sound');
+    var porUsuario = reduce;
+    var cargar = function () { if (!v.getAttribute('src')) v.src = v.dataset.src; };
+    var dale = function () { cargar(); var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); };
+    box.classList.add('is-paused');
+    v.addEventListener('play', function () { box.classList.remove('is-paused'); play.setAttribute('aria-label', 'Pausar video'); });
+    v.addEventListener('pause', function () { box.classList.add('is-paused'); play.setAttribute('aria-label', 'Reproducir video'); });
+    play.addEventListener('click', function () { if (v.paused) { porUsuario = false; dale(); } else { porUsuario = true; v.pause(); } });
+    snd.addEventListener('click', function () {
+      v.muted = !v.muted;
+      box.classList.toggle('is-unmuted', !v.muted);
+      snd.setAttribute('aria-label', v.muted ? 'Activar sonido' : 'Silenciar');
+      if (!v.muted && v.paused) { porUsuario = false; dale(); }
+    });
+    if (hasIO) {
+      new IntersectionObserver(function (en) {
+        en.forEach(function (e) {
+          if (e.isIntersecting) { if (!porUsuario) dale(); }
+          else if (!v.paused) v.pause();
+        });
+      }, { threshold: 0.3 }).observe(box);
+    } else if (!reduce) dale();
   });
 
   /* ---------- Copiar alias / CBU ---------- */
