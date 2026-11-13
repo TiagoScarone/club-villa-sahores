@@ -5,41 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Club Villa Sahores</title>
   <meta name="description" content="Club Social y Deportivo Villa Sahores. El club de barrio más grande de la Argentina. Santo Tomé 2496, Villa del Parque, CABA.">
+  <meta name="theme-color" content="#04170d">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://static.wixstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="https://static.wixstatic.com/media/950c4b_267b5a75f27146efb8a3a10df0559e04~mv2.jpeg/v1/fill/w_1920,h_1200,al_c,q_80,enc_jpg/sahores.jpg">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <a class="skip" href="#contenido">Ir al contenido</a>
 
-  <!-- ===== Barra superior: estado del club + datos rápidos ===== -->
-  <div class="topbar">
-    <div class="wrap topbar__in">
-      <p class="status" id="estado-club">
-        <span class="status__dot" aria-hidden="true"></span>
-        <span class="status__text">Lun a vie 8 a 21 h · Sáb 8 a 19 h</span>
-      </p>
-      <p class="topbar__meta">
-        <span>Santo Tomé 2496, Villa del Parque</span>
-        <a href="https://wa.me/5491176402245">WhatsApp 11 7640-2245</a>
-      </p>
+  <!-- ===== Cabecera fija ===== -->
+  <div class="site-head" id="site-head">
+    <div class="topbar">
+      <div class="wrap topbar__in">
+        <a class="topbar__map" href="https://www.google.com/maps/search/?api=1&amp;query=Santo+Tom%C3%A9+2496%2C+Villa+del+Parque%2C+CABA"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Santo Tomé 2496, Villa del Parque · <u>Ver en Google Maps</u></span></a>
+        <div class="topbar__links">
+          <a href="tel:+541145847174">Tel. 4584-7174</a>
+          <a href="https://wa.me/5491176402245">WhatsApp 11 7640-2245</a>
+          <a href="https://www.instagram.com/villa.sahores/">Instagram</a>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- ===== Header ===== -->
-  <header class="header">
-    <div class="wrap header__in">
-      <a class="brand" href="#inicio" aria-label="Club Villa Sahores, inicio">
-        <!-- Escudo recortado de la cabecera actual. Reemplazar por <img src="assets/escudo.svg" alt=""> -->
-        <span class="crest" aria-hidden="true"></span>
-        <span class="brand__name">Villa Sahores<small>Club Social y Deportivo</small></span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
-      <nav class="nav" id="nav" aria-label="Principal">
-        <ul class="nav__list">
-          <li class="nav__item"><a class="nav__link" href="#inicio">Inicio</a></li>
-          <li class="nav__item has-sub">
+    <header class="header">
+      <div class="wrap header__in">
+        <a class="brand" href="#inicio" aria-label="Club Villa Sahores, inicio">
+          <!-- Escudo recortado de la cabecera actual. Reemplazar por <img src="assets/escudo.svg" alt=""> -->
+          <span class="crest" aria-hidden="true"></span>
+          <span class="brand__name">Villa Sahores<small>Club Social y Deportivo</small></span>
+        </a>
+
+        <nav class="nav" id="nav" aria-label="Principal">
+          <ul class="nav__list">
+          <li class="nav__item has-sub" style="--i:0">
             <button class="nav__link" type="button" aria-expanded="false" aria-controls="sub-inst">Institucional</button>
             <ul class="sub" id="sub-inst">
               <li><a href="https://www.clubvillasahores.com/institucional">Institucional</a></li>
@@ -50,9 +51,9 @@
               <li><a href="https://www.clubvillasahores.com/nuestros-valores">Nuestros Valores</a></li>
             </ul>
           </li>
-          <li class="nav__item has-sub">
-            <button class="nav__link" type="button" aria-expanded="false" aria-controls="sub-adm">Administración</button>
-            <ul class="sub" id="sub-adm">
+          <li class="nav__item has-sub" style="--i:1">
+            <button class="nav__link" type="button" aria-expanded="false" aria-controls="sub-admi">Administración</button>
+            <ul class="sub" id="sub-admi">
               <li><a href="https://www.clubvillasahores.com/administracion">Administración</a></li>
               <li><a href="https://www.clubvillasahores.com/valores-de-cuota-social">Valores de Cuota Social</a></li>
               <li><a href="https://www.clubvillasahores.com/aranceles-actividades">Cronograma de Actividades</a></li>
@@ -60,9 +61,9 @@
               <li><a href="https://www.clubvillasahores.com/formularios">Formularios</a></li>
             </ul>
           </li>
-          <li class="nav__item has-sub">
-            <button class="nav__link" type="button" aria-expanded="false" aria-controls="sub-act">Actividades</button>
-            <ul class="sub" id="sub-act">
+          <li class="nav__item has-sub" style="--i:2">
+            <button class="nav__link" type="button" aria-expanded="false" aria-controls="sub-acti">Actividades</button>
+            <ul class="sub" id="sub-acti">
               <li><a href="https://www.clubvillasahores.com/actividades">Todas las actividades</a></li>
               <li><a href="https://www.clubvillasahores.com/basquetbol">Básquetbol</a></li>
               <li><a href="https://www.clubvillasahores.com/boxeo">Boxeo</a></li>
@@ -76,10 +77,10 @@
               <li><a href="https://www.clubvillasahores.com/voleibol">Vóleibol</a></li>
             </ul>
           </li>
-          <li class="nav__item"><a class="nav__link" href="https://www.clubvillasahores.com/sahores-fitness">Sahores Fitness</a></li>
-          <li class="nav__item has-sub">
-            <button class="nav__link" type="button" aria-expanded="false" aria-controls="sub-pil">Pileta</button>
-            <ul class="sub" id="sub-pil">
+          <li class="nav__item" style="--i:3"><a class="nav__link" href="https://www.clubvillasahores.com/sahores-fitness">Sahores Fitness</a></li>
+          <li class="nav__item has-sub" style="--i:4">
+            <button class="nav__link" type="button" aria-expanded="false" aria-controls="sub-pile">Pileta</button>
+            <ul class="sub" id="sub-pile">
               <li><a href="https://www.clubvillasahores.com/pileta">Pileta</a></li>
               <li><a href="https://www.clubvillasahores.com/natacion">Natación</a></li>
               <li><a href="https://www.clubvillasahores.com/aquagym">Aquagym</a></li>
@@ -87,8 +88,8 @@
               <li><a href="https://www.clubvillasahores.com/cumpleanos">Cumpleaños</a></li>
             </ul>
           </li>
-          <li class="nav__item"><a class="nav__link" href="https://www.clubvillasahores.com/colonia">Colonia</a></li>
-          <li class="nav__item has-sub">
+          <li class="nav__item" style="--i:5"><a class="nav__link" href="https://www.clubvillasahores.com/colonia">Colonia</a></li>
+          <li class="nav__item has-sub" style="--i:6">
             <button class="nav__link" type="button" aria-expanded="false" aria-controls="sub-mas">Más</button>
             <ul class="sub" id="sub-mas">
               <li><a href="https://www.clubvillasahores.com/turismo-sahores">Turismo Sahores</a></li>
@@ -100,68 +101,96 @@
               <li><a href="https://www.clubvillasahores.com/mapa-del-sitio">Mapa del Sitio</a></li>
             </ul>
           </li>
-        </ul>
-        <a class="btn btn--primary nav__cta" href="https://www.clubvillasahores.com/formularios">Asociate</a>
-      </nav>
-    </div>
-  </header>
+          </ul>
+          <a class="btn btn--lima nav__cta" href="https://www.clubvillasahores.com/formularios">Asociate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <div class="nav__extra">
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Santo+Tom%C3%A9+2496%2C+Villa+del+Parque%2C+CABA"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Santo Tomé 2496, Villa del Parque</a>
+            <a href="https://wa.me/5491176402245"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/><path d="M9 10.5h6M9 13.5h4"/></svg>WhatsApp +54 9 11 7640-2245</a>
+            <a href="tel:+541145847174"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>4584-7174</a>
+          </div>
+        </nav>
+
+        <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      </div>
+    </header>
+  </div>
 
   <main id="contenido">
 
     <!-- ===== Hero ===== -->
-    <section class="hero" id="inicio">
-      <div class="wrap hero__in">
-        <div class="hero__copy">
-          <p class="eyebrow eyebrow--light">Club Social y Deportivo · Villa del Parque</p>
-          <h1>Bienvenidos a Sahores</h1>
-          <p class="hero__lead">El club de barrio más grande de la Argentina.</p>
-          <div class="hero__actions">
-            <a class="btn btn--light" href="#actividades">Ver actividades</a>
-            <a class="btn btn--ghost" href="https://www.clubvillasahores.com/formularios">Quiero asociarme</a>
-          </div>
-        </div>
-        <img class="hero__photo" src="https://static.wixstatic.com/media/950c4b_f0ea968457af43dc80aa0b646b1a8628~mv2.jpeg" alt="Frente del club sobre Santo Tomé" width="1600" height="1200">
+    <section class="hero" id="inicio" aria-label="Bienvenida">
+      <div class="hero__slides">
+        <div class="hero__slide is-active"><img src="https://static.wixstatic.com/media/950c4b_267b5a75f27146efb8a3a10df0559e04~mv2.jpeg/v1/fill/w_1920,h_1200,al_c,q_80,enc_jpg/sahores.jpg" alt="" fetchpriority="high"></div>
+        <div class="hero__slide"><img src="https://static.wixstatic.com/media/950c4b_9306b122e0ce48b991eeac7040c70d65~mv2.jpg/v1/fill/w_1920,h_1200,al_c,q_80,enc_jpg/sahores.jpg" alt="" loading="lazy"></div>
+        <div class="hero__slide"><img src="https://static.wixstatic.com/media/950c4b_6896f21069194868bb3ba25bd1d64e1f~mv2.jpg/v1/fill/w_1920,h_1200,al_c,q_80,enc_jpg/sahores.jpg" alt="" loading="lazy"></div>
+        <div class="hero__slide"><img src="https://static.wixstatic.com/media/950c4b_4bd34aa0c41f47d38002cfb671400d3c~mv2.png/v1/fill/w_1920,h_1200,al_c,q_80,enc_jpg/sahores.jpg" alt="" loading="lazy"></div>
+        <div class="hero__slide"><img src="https://static.wixstatic.com/media/950c4b_3d86717558e24319b724fbb67070e260~mv2.jpeg/v1/fill/w_1920,h_1200,al_c,q_80,enc_jpg/sahores.jpg" alt="" loading="lazy"></div>
       </div>
+      <div class="hero__shade" aria-hidden="true"></div>
       <div class="hero__sash" aria-hidden="true"></div>
+
+      <div class="wrap hero__in">
+        <p class="hero__kicker hero__fade">Club Social y Deportivo · Desde 1931</p>
+        <h1 class="hero__title"><span class="line"><span>Bienvenidos</span></span><span class="line"><span>a <em>Sahores</em></span></span></h1>
+        <p class="hero__lead hero__fade">El club de barrio más grande de la Argentina.</p>
+        <div class="hero__actions hero__fade">
+          <a class="btn btn--lima" href="#actividades">Ver actividades <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--ghost" href="https://www.clubvillasahores.com/formularios">Quiero asociarme</a>
+        </div>
+      </div>
+
+      <div class="wrap hero__ui hero__fade">
+        <div class="hero__dots" role="group" aria-label="Fotos del club">
+          <button class="hero__dot is-active" type="button" aria-current="true" aria-label="Foto 1: La entrada"><span><b>01</b><span class="cap">La entrada</span></span><span class="hero__bar"></span></button>
+          <button class="hero__dot" type="button" aria-current="false" aria-label="Foto 2: Sahores Fitness"><span><b>02</b><span class="cap">Sahores Fitness</span></span><span class="hero__bar"></span></button>
+          <button class="hero__dot" type="button" aria-current="false" aria-label="Foto 3: Instalaciones"><span><b>03</b><span class="cap">Instalaciones</span></span><span class="hero__bar"></span></button>
+          <button class="hero__dot" type="button" aria-current="false" aria-label="Foto 4: De noche"><span><b>04</b><span class="cap">De noche</span></span><span class="hero__bar"></span></button>
+          <button class="hero__dot" type="button" aria-current="false" aria-label="Foto 5: El frente"><span><b>05</b><span class="cap">El frente</span></span><span class="hero__bar"></span></button>
+        </div>
+        <button class="round-btn hero__pause" type="button" aria-pressed="false" aria-label="Pausar fotos"><span class="ico-pause"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg></span><span class="ico-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></button>
+      </div>
     </section>
+
+    <div class="band" aria-hidden="true">
+      <div class="band__inner"><div class="band__track"><ul class="band__group"><li>Aquagym</li><li>Básquetbol</li><li>Boxeo</li><li>Fitness</li><li>Folklore</li><li>Fútbol</li><li>Gimnasia Artística</li><li>Kick Boxing y Muay Thai</li><li>Natación</li><li>Patín Artístico</li><li>Pileta Libre</li><li>Taekwondo</li><li>Telas</li><li>Vóleibol</li></ul><ul class="band__group"><li>Aquagym</li><li>Básquetbol</li><li>Boxeo</li><li>Fitness</li><li>Folklore</li><li>Fútbol</li><li>Gimnasia Artística</li><li>Kick Boxing y Muay Thai</li><li>Natación</li><li>Patín Artístico</li><li>Pileta Libre</li><li>Taekwondo</li><li>Telas</li><li>Vóleibol</li></ul></div></div>
+    </div>
 
     <!-- ===== Actividades ===== -->
     <section class="section" id="actividades">
       <div class="wrap">
-        <div class="section__head">
+        <div class="acts-head" data-reveal>
+          <span class="big-num" aria-hidden="true">14</span>
           <div>
             <p class="eyebrow">Actividades</p>
             <h2>Nuestras actividades</h2>
           </div>
-          <a class="link-arrow" href="https://www.clubvillasahores.com/aranceles-actividades">Cronograma y aranceles</a>
+          <a class="link-arrow" href="https://www.clubvillasahores.com/aranceles-actividades">Cronograma y aranceles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
-
-
         <ul class="acts">
-          <li><a class="act" href="https://www.clubvillasahores.com/aquagym"><img src="https://static.wixstatic.com/media/950c4b_b200147813924877be4f62eb328d106c~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Aquagym</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/basquetbol"><img src="https://static.wixstatic.com/media/950c4b_34ebc1c5bb294d269f000518f6c48509~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Básquetbol</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/boxeo"><img src="https://static.wixstatic.com/media/950c4b_dbe3e36e379944df9d8a70cb85cf2d7e~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Boxeo</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/sahores-fitness"><img src="https://static.wixstatic.com/media/950c4b_32bf8fe034874f489b35b44ed93c29a1~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Fitness</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/folklore"><img src="https://static.wixstatic.com/media/950c4b_f8ee5bfa53cd4cbba265c1afcc7d3f68~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Folklore</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/futbol"><img src="https://static.wixstatic.com/media/950c4b_bc8b14d1c7984e668fcf0b28c60a1916~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Fútbol</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/gimnasia-art%C3%ADstica"><img src="https://static.wixstatic.com/media/950c4b_09a0c25a5a83468a8e7ed699249eef38~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Gimnasia Artística</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/kick-boxing"><img src="https://static.wixstatic.com/media/950c4b_615e4e17910a44078eeed52bcd20ad3e~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Kick Boxing y Muay Thai</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/natacion"><img src="https://static.wixstatic.com/media/950c4b_6b334e36abe04f37b7c35c37a678764e~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Natación</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/patin-artistico"><img src="https://static.wixstatic.com/media/950c4b_cf649f50ef364f7183544b054bf42b9c~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Patín Artístico</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/pileta-libre"><img src="https://static.wixstatic.com/media/950c4b_ba6bf90082474c4d88097a9b07716e5f~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Pileta Libre</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/taekwondo"><img src="https://static.wixstatic.com/media/950c4b_d87aa8d6058643839e639e43b20726cf~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Taekwondo</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/telas"><img src="https://static.wixstatic.com/media/950c4b_7108fa3f8113471fa7dcda9a065bd452~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Telas</span></a></li>
-          <li><a class="act" href="https://www.clubvillasahores.com/voleibol"><img src="https://static.wixstatic.com/media/950c4b_eabfbf0e0df64fc0a0da1a8a52a240e5~mv2.jpg" alt="" width="96" height="96" loading="lazy"><span>Vóleibol</span></a></li>
+          <li data-reveal style="--d:0"><a class="act" href="https://www.clubvillasahores.com/aquagym"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_b200147813924877be4f62eb328d106c~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Aquagym</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:1"><a class="act" href="https://www.clubvillasahores.com/basquetbol"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_34ebc1c5bb294d269f000518f6c48509~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Básquetbol</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:2"><a class="act" href="https://www.clubvillasahores.com/boxeo"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_dbe3e36e379944df9d8a70cb85cf2d7e~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Boxeo</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:3"><a class="act" href="https://www.clubvillasahores.com/sahores-fitness"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_32bf8fe034874f489b35b44ed93c29a1~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Fitness</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:4"><a class="act" href="https://www.clubvillasahores.com/folklore"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_f8ee5bfa53cd4cbba265c1afcc7d3f68~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Folklore</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:5"><a class="act" href="https://www.clubvillasahores.com/futbol"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_bc8b14d1c7984e668fcf0b28c60a1916~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Fútbol</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:6"><a class="act" href="https://www.clubvillasahores.com/gimnasia-art%C3%ADstica"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_09a0c25a5a83468a8e7ed699249eef38~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Gimnasia Artística</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:0"><a class="act" href="https://www.clubvillasahores.com/kick-boxing"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_615e4e17910a44078eeed52bcd20ad3e~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Kick Boxing y Muay Thai</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:1"><a class="act" href="https://www.clubvillasahores.com/natacion"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_6b334e36abe04f37b7c35c37a678764e~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Natación</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:2"><a class="act" href="https://www.clubvillasahores.com/patin-artistico"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_cf649f50ef364f7183544b054bf42b9c~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Patín Artístico</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:3"><a class="act" href="https://www.clubvillasahores.com/pileta-libre"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_ba6bf90082474c4d88097a9b07716e5f~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Pileta Libre</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:4"><a class="act" href="https://www.clubvillasahores.com/taekwondo"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_d87aa8d6058643839e639e43b20726cf~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Taekwondo</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:5"><a class="act" href="https://www.clubvillasahores.com/telas"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_7108fa3f8113471fa7dcda9a065bd452~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Telas</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:6"><a class="act" href="https://www.clubvillasahores.com/voleibol"><span class="act__icon"><img src="https://static.wixstatic.com/media/950c4b_eabfbf0e0df64fc0a0da1a8a52a240e5~mv2.jpg" alt="" width="96" height="96" loading="lazy"></span><span class="act__name">Vóleibol</span><span class="act__go">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
         </ul>
       </div>
     </section>
 
-    <!-- ===== Horarios y contacto ===== -->
+    <!-- ===== Administración y contacto ===== -->
     <section class="section section--tint" id="horarios">
-      <div class="wrap grid-2">
-        <div>
-          <p class="eyebrow">Horarios de atención</p>
-          <h2>Cuándo encontrarnos</h2>
+      <div class="wrap info-grid">
+        <div class="panel" data-reveal>
+          <p class="eyebrow">Horario de atención</p>
+          <h2>Administración</h2>
           <div class="hours">
             <article class="hours__card" data-season="invierno">
               <h3>Marzo a noviembre</h3>
@@ -180,18 +209,18 @@
           </div>
         </div>
 
-        <div id="contacto">
+        <div class="panel" id="contacto" data-reveal style="--d:2">
           <p class="eyebrow">Contacto</p>
           <h2>Escribinos o pasá por el club</h2>
           <ul class="contact">
-            <li><span>Dirección</span><a href="https://www.google.com/maps/search/?api=1&query=Santo+Tom%C3%A9+2496+CABA">Santo Tomé 2496, Villa del Parque, CABA</a></li>
-            <li><span>WhatsApp (solo texto)</span><a href="https://wa.me/5491176402245">+54 9 11 7640-2245</a></li>
-            <li><span>Teléfono</span><a href="tel:+541145847174">4584-7174</a></li>
-            <li><span>E-mail</span><a href="mailto:clubvillasahores@gmail.com">clubvillasahores@gmail.com</a></li>
+            <li><span class="contact__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span class="lbl">Dirección</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Santo+Tom%C3%A9+2496%2C+Villa+del+Parque%2C+CABA">Santo Tomé 2496, Villa del Parque, CABA</a></li>
+            <li><span class="contact__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/><path d="M9 10.5h6M9 13.5h4"/></svg></span><span class="lbl">WhatsApp (solo texto)</span><a href="https://wa.me/5491176402245">+54 9 11 7640-2245</a></li>
+            <li><span class="contact__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><span class="lbl">Teléfono</span><a href="tel:+541145847174">4584-7174</a></li>
+            <li><span class="contact__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="lbl">E-mail</span><a href="mailto:clubvillasahores@gmail.com">clubvillasahores@gmail.com</a></li>
           </ul>
           <div class="contact__actions">
-            <a class="btn btn--primary" href="https://wa.me/5491176402245">Escribir por WhatsApp</a>
-            <a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&query=Santo+Tom%C3%A9+2496+CABA">Cómo llegar</a>
+            <a class="btn btn--primary" href="https://wa.me/5491176402245">Escribir por WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=Santo+Tom%C3%A9+2496%2C+Villa+del+Parque%2C+CABA">Ver en Google Maps</a>
           </div>
         </div>
       </div>
@@ -199,8 +228,8 @@
 
     <!-- ===== Pagos por transferencia ===== -->
     <section class="section" id="pagos">
-      <div class="wrap grid-2 grid-2--pay">
-        <div>
+      <div class="wrap pay">
+        <div data-reveal>
           <p class="eyebrow">Pagos por transferencia</p>
           <h2>Pagá tu cuota en tres pasos</h2>
           <ol class="steps">
@@ -219,7 +248,7 @@
           </ol>
         </div>
 
-        <aside class="bank" aria-label="Datos bancarios">
+        <aside class="bank" aria-label="Datos bancarios" data-reveal style="--d:2">
           <p class="bank__title">Datos para transferir</p>
           <div class="bank__row">
             <div>
@@ -240,67 +269,92 @@
       </div>
     </section>
 
-    <!-- ===== Sahores Stream ===== -->
-    <section class="stream" id="stream">
+    <!-- ===== Sahores Stream: video de fondo (el mismo del inicio del sitio actual) ===== -->
+    <section class="stream is-paused" id="stream" aria-label="Sahores Stream">
+      <video class="stream__video" id="stream-video" muted loop playsinline preload="none"
+        poster="https://static.wixstatic.com/media/950c4b_a9c574d079da44cd80bc9c51fbf2cccbf001.jpg"
+        data-src="https://video.wixstatic.com/video/950c4b_a9c574d079da44cd80bc9c51fbf2cccb/720p/mp4/file.mp4"
+        aria-hidden="true"></video>
+      <div class="stream__shade" aria-hidden="true"></div>
       <div class="wrap stream__in">
-        <div>
+        <div class="stream__content" data-reveal>
+          <img class="stream__logo" src="https://static.wixstatic.com/media/950c4b_8d130f735dae4b51ad464138e1d3f6e0~mv2.jpeg/v1/fill/w_240,h_240,al_c,q_80,enc_jpg/sahores.jpg" alt="Sahores Stream" width="96" height="96" loading="lazy">
           <p class="eyebrow eyebrow--light"><span class="live" aria-hidden="true"></span>Sahores Stream</p>
           <h2>El club también se ve desde casa</h2>
-          <p>Seguí las transmisiones de Sahores en nuestro canal de YouTube.</p>
-          <a class="btn btn--ghost" href="https://www.youtube.com/channel/UChaa_Bnt4wjDdd_SjJfx7qw">Abrir el canal en YouTube</a>
-        </div>
-        <div class="video" id="video-stream" data-embed="https://www.youtube-nocookie.com/embed/videoseries?list=UUhaa_Bnt4wjDdd_SjJfx7qw">
-          <button class="video__play" type="button" aria-label="Reproducir el último video de Sahores Stream">
-            <img src="https://static.wixstatic.com/media/950c4b_03e95a1467a443dfad7f4277e96a07f8~mv2.jpg" alt="" width="961" height="147" loading="lazy">
-            <span class="video__icon" aria-hidden="true"></span>
-            <span class="video__label">Ver el último video</span>
-          </button>
+          <p>Entrevistas, deportes y todo lo que pasa en Sahores, en nuestro canal de YouTube.</p>
+          <div class="stream__actions">
+            <a class="btn btn--lima" href="https://www.youtube.com/channel/UChaa_Bnt4wjDdd_SjJfx7qw">Ver el canal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+            <button class="round-btn stream__play" type="button" aria-label="Reproducir video"><span class="ico-pause"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg></span><span class="ico-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></button>
+            <button class="round-btn stream__sound" type="button" aria-label="Activar sonido"><span class="ico-sound-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg></span><span class="ico-sound-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></span></button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== El club en fotos ===== -->
-    <section class="section section--tint" id="fotos">
-      <div class="wrap">
-        <div class="section__head">
-          <div>
-            <p class="eyebrow">El club</p>
-            <h2>Así está Sahores hoy</h2>
-          </div>
+    <!-- ===== Así está Sahores hoy (carrusel) ===== -->
+    <section class="section gallery-sec" id="fotos">
+      <div class="wrap section__head" data-reveal>
+        <div>
+          <p class="eyebrow">El club</p>
+          <h2>Así está Sahores hoy</h2>
         </div>
-        <div class="gallery">
-          <figure><img src="https://static.wixstatic.com/media/950c4b_3d86717558e24319b724fbb67070e260~mv2.jpeg" alt="Frente del club visto desde la esquina" width="1582" height="1182" loading="lazy"><figcaption>Frente del club, agosto 2026</figcaption></figure>
-          <figure><img src="https://static.wixstatic.com/media/950c4b_6df7028446574dfc90d39b7dfaac50ce~mv2.jpg" alt="Patio con mesas y sombrillas junto al quincho" width="1600" height="1200" loading="lazy"><figcaption>Quincho y patio remodelados</figcaption></figure>
+      </div>
+      <div class="carousel" role="region" aria-roledescription="carrusel" aria-label="Fotos del club">
+        <div class="carousel__track" tabindex="0">
+          <figure class="slide is-current"><img src="https://static.wixstatic.com/media/950c4b_f0ea968457af43dc80aa0b646b1a8628~mv2.jpeg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Frente del club sobre Santo Tomé, con las puertas abiertas" width="1280" height="800" loading="lazy"><figcaption><b>El frente</b><span>01 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_3d86717558e24319b724fbb67070e260~mv2.jpeg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Frente del club visto desde la vereda" width="1280" height="800" loading="lazy"><figcaption><b>El frente</b><span>02 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_d968e6c93ca24ec9b20c06bde102a25f~mv2.jpeg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Frente del club en diagonal, con el escudo en la pared" width="1280" height="800" loading="lazy"><figcaption><b>El frente</b><span>03 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_267b5a75f27146efb8a3a10df0559e04~mv2.jpeg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Entrada del club con el cartel verde iluminado" width="1280" height="800" loading="lazy"><figcaption><b>La entrada</b><span>04 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_a373618be5e34c4a825aa83aca44134f~mv2.png/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Entrada del club al atardecer" width="1280" height="800" loading="lazy"><figcaption><b>La entrada</b><span>05 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_4bd34aa0c41f47d38002cfb671400d3c~mv2.png/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Frente del club de noche con el cartel encendido" width="1280" height="800" loading="lazy"><figcaption><b>De noche</b><span>06 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_efb45b24614a43c49bef01bc21eee717~mv2.jpg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Placa de bronce con el nombre Villa Sahores" width="1280" height="800" loading="lazy"><figcaption><b>La placa</b><span>07 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_86d85612a92c41909475c311cd7a8f3d~mv2.jpg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Gimnasio con máquinas y luces verdes" width="1280" height="800" loading="lazy"><figcaption><b>Sahores Fitness</b><span>08 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_5334c72f74cf499d9102bae588ed6be2~mv2.jpg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Cintas y máquinas del gimnasio" width="1280" height="800" loading="lazy"><figcaption><b>Sahores Fitness</b><span>09 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_9306b122e0ce48b991eeac7040c70d65~mv2.jpg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Sector de pesas con el logo de Sahores Fitness" width="1280" height="800" loading="lazy"><figcaption><b>Sahores Fitness</b><span>10 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_e4e5ed16b02147419b5dc1389bf52d12~mv2.jpg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Bancos y máquinas del gimnasio" width="1280" height="800" loading="lazy"><figcaption><b>Sahores Fitness</b><span>11 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_ac20666dcce34b04a92fb98f6d91e7c2~mv2.jpg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Recepción del gimnasio" width="1280" height="800" loading="lazy"><figcaption><b>Sahores Fitness</b><span>12 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_6896f21069194868bb3ba25bd1d64e1f~mv2.jpg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Salón con piso de madera y el escudo del club en la pared" width="1280" height="800" loading="lazy"><figcaption><b>Instalaciones</b><span>13 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_b791d6369f6048599eb47335a7ee4c24~mv2.jpg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Salón amplio con luces verdes" width="1280" height="800" loading="lazy"><figcaption><b>Instalaciones</b><span>14 / 15</span></figcaption></figure>
+          <figure class="slide"><img src="https://static.wixstatic.com/media/950c4b_6df7028446574dfc90d39b7dfaac50ce~mv2.jpg/v1/fill/w_1280,h_800,al_c,q_80,enc_jpg/sahores.jpg" alt="Patio remodelado con mesas y sombrillas junto al quincho" width="1280" height="800" loading="lazy"><figcaption><b>Quincho y patio</b><span>15 / 15</span></figcaption></figure>
+        </div>
+        <div class="wrap carousel__bar">
+          <p class="carousel__count" aria-live="polite"><b>01</b><span> / 15</span></p>
+          <div class="carousel__progress" aria-hidden="true"><span style="--p:6.667%"></span></div>
+          <div class="carousel__nav">
+            <button class="round-btn carousel__auto" type="button" aria-pressed="false" aria-label="Pausar carrusel"><span class="ico-pause"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg></span><span class="ico-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span></button>
+            <button class="round-btn carousel__prev" type="button" aria-label="Foto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button class="round-btn carousel__next" type="button" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ===== Otros accesos ===== -->
-    <section class="section" id="accesos">
+    <section class="section section--tint" id="accesos">
       <div class="wrap">
-        <div class="section__head">
+        <div class="section__head" data-reveal>
           <div>
             <p class="eyebrow">Otros accesos</p>
             <h2>Todo lo demás, a un clic</h2>
           </div>
         </div>
         <ul class="tiles">
-          <li><a class="tile" href="https://www.clubvillasahores.com/valores-de-cuota-social"><strong>Cuotas</strong><span>Valores de la cuota social</span></a></li>
-          <li><a class="tile" href="https://www.clubvillasahores.com/sahores-fitness"><strong>Sahores Fitness</strong><span>El gimnasio del club</span></a></li>
-          <li><a class="tile" href="https://www.clubvillasahores.com/pileta"><strong>Pileta</strong><span>Información de la pileta</span></a></li>
-          <li><a class="tile" href="https://www.clubvillasahores.com/colonia"><strong>Colonia</strong><span>Colonia del club</span></a></li>
-          <li><a class="tile" href="https://www.clubvillasahores.com/aranceles-de-alquileres"><strong>Alquileres</strong><span>Aranceles de alquiler de espacios</span></a></li>
-          <li><a class="tile" href="https://www.clubvillasahores.com/cumpleanos"><strong>Cumpleaños</strong><span>Festejá en el club</span></a></li>
-          <li><a class="tile" href="https://www.clubvillasahores.com/formularios"><strong>Formularios</strong><span>Altas y trámites de socios</span></a></li>
-          <li><a class="tile tile--quiet" href="https://www.clubvillasahores.com/renuncia-socio-a"><strong>Renuncia</strong><span>Baja de socio/a</span></a></li>
+          <li data-reveal style="--d:0"><a class="tile" href="https://www.clubvillasahores.com/valores-de-cuota-social"><span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span><span class="tile__txt"><strong>Cuotas</strong><span>Valores de la cuota social</span></span><span class="tile__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:1"><a class="tile" href="https://www.clubvillasahores.com/sahores-fitness"><span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 7v10M17.5 7v10M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/></svg></span><span class="tile__txt"><strong>Sahores Fitness</strong><span>El gimnasio del club</span></span><span class="tile__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:2"><a class="tile" href="https://www.clubvillasahores.com/pileta"><span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 19c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><path d="M8 15.5V6a2 2 0 0 1 4 0M14 15.5V6a2 2 0 0 1 4 0M8 9.5h6M8 13h6"/></svg></span><span class="tile__txt"><strong>Pileta</strong><span>Natación, aquagym y pileta libre</span></span><span class="tile__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:3"><a class="tile" href="https://www.clubvillasahores.com/colonia"><span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="tile__txt"><strong>Colonia</strong><span>La colonia del club</span></span><span class="tile__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:0"><a class="tile" href="https://www.clubvillasahores.com/aranceles-de-alquileres"><span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 9.2-9.2M16 7l3 3M13.5 9.5l2 2"/></svg></span><span class="tile__txt"><strong>Alquileres</strong><span>Aranceles de alquiler de espacios</span></span><span class="tile__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:1"><a class="tile" href="https://www.clubvillasahores.com/cumpleanos"><span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21h16M5 21v-8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8"/><path d="M5 15.5c1.4 0 1.4-1 2.8-1s1.4 1 2.8 1 1.4-1 2.8-1 1.4 1 2.8 1 1.4-1 1.8-1"/><path d="M12 11V8"/><path d="M12 5.5c.8-.8.8-1.7 0-2.5-.8.8-.8 1.7 0 2.5z"/></svg></span><span class="tile__txt"><strong>Cumpleaños</strong><span>Festejá en el club</span></span><span class="tile__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:2"><a class="tile" href="https://www.clubvillasahores.com/formularios"><span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><span class="tile__txt"><strong>Formularios</strong><span>Altas y trámites de socios</span></span><span class="tile__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          <li data-reveal style="--d:3"><a class="tile tile--quiet" href="https://www.clubvillasahores.com/renuncia-socio-a"><span class="tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></span><span class="tile__txt"><strong>Renuncia</strong><span>Baja de socio/a</span></span><span class="tile__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
         </ul>
       </div>
     </section>
 
     <!-- ===== Para tener en cuenta + Reglamento ===== -->
-    <section class="section section--tint" id="reglamento">
+    <section class="section" id="reglamento">
       <div class="wrap">
-        <div class="section__head">
+        <div class="section__head" data-reveal>
           <div>
             <p class="eyebrow">Para tener en cuenta</p>
             <h2>Antes de venir al club</h2>
@@ -308,7 +362,7 @@
         </div>
 
         <div class="rules">
-          <div class="rules__col">
+          <div class="rules__col" data-reveal>
             <h3 class="rules__title rules__title--no">No está permitido</h3>
             <ul>
               <li><strong>Bicicletas, motos y monopatines</strong>No pueden ingresar al club, tampoco ciclomotores.</li>
@@ -316,7 +370,7 @@
               <li><strong>Estacionar en la dársena</strong>El sector frente al club es solo para ascenso y descenso de pasajeros.</li>
             </ul>
           </div>
-          <div class="rules__col">
+          <div class="rules__col" data-reveal style="--d:2">
             <h3 class="rules__title rules__title--ok">Bueno saberlo</h3>
             <ul>
               <li><strong>Cuota al día</strong>Es necesaria para ingresar. La cuota de un mes habilita el ingreso hasta el día 10 del mes siguiente.</li>
@@ -327,33 +381,28 @@
           </div>
         </div>
 
-        <div class="docs">
+        <div class="docs" data-reveal>
           <a class="doc" href="https://www.clubvillasahores.com/_files/ugd/950c4b_909635df440345aa989d479d8bb90b50.pdf">
             <span class="doc__type">PDF</span>
             <span class="doc__body"><strong>Reglamento para el acceso al club</strong><span>Agosto 2026</span></span>
-            <span class="doc__cta">Abrir</span>
+            <span class="doc__cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
           <a class="doc" href="https://www.clubvillasahores.com/_files/ugd/950c4b_a7a304a0e0004fa8bb34f94593d9c4cb.pdf">
             <span class="doc__type">PDF</span>
             <span class="doc__body"><strong>Reglamento del quincho</strong><span>Agosto 2024</span></span>
-            <span class="doc__cta">Abrir</span>
+            <span class="doc__cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
         </div>
       </div>
     </section>
 
     <!-- ===== Sponsors ===== -->
-    <section class="section section--tight" id="sponsors">
-      <div class="wrap">
-        <p class="eyebrow eyebrow--center">Nos acompañan</p>
-        <ul class="sponsors">
-          <li><a href="https://lupagrafica.com/"><img src="https://static.wixstatic.com/media/950c4b_7d12c0de6c83425da70251761311af20~mv2.jpg" alt="Lupa Gráfica" width="400" height="300" loading="lazy"></a></li>
-          <li><a href="https://www.instagram.com/impulsodeportivo_ok/"><img src="https://static.wixstatic.com/media/950c4b_d73877e71b394abab57b0a4d4476aac9~mv2.jpg" alt="Impulso Deportivo" width="400" height="300" loading="lazy"></a></li>
-          <li><a href="https://www.instagram.com/venka.ok/"><img src="https://static.wixstatic.com/media/950c4b_a8d173b464c24080b4f10df32b2a7f67~mv2.jpg" alt="Venka" width="400" height="300" loading="lazy"></a></li>
-          <li><a href="https://www.instagram.com/clubesdebarriounidos/"><img src="https://static.wixstatic.com/media/950c4b_3130963ba6e14a8e8ba101fc96a55ab6~mv2.jpg" alt="FESCBU" width="400" height="300" loading="lazy"></a></li>
-          <li><a href="https://estilosoap1.empretienda.com.ar/"><img src="https://static.wixstatic.com/media/950c4b_38253811b5be41f8a294c5e3c887a8dd~mv2.jpg" alt="Acazia" width="400" height="300" loading="lazy"></a></li>
-          <li><a href="https://www.instagram.com/esbra_ok/"><img src="https://static.wixstatic.com/media/950c4b_9f3ee4359c2e47c3bb9783e178767b01~mv2.jpg" alt="ESBRA" width="400" height="300" loading="lazy"></a></li>
-        </ul>
+    <section class="section section--tight section--tint" id="sponsors">
+      <div class="wrap logos-title">
+        <p class="eyebrow">Nos acompañan</p>
+      </div>
+      <div class="logos">
+        <div class="logos__track"><ul class="logos__group"><li><a href="https://lupagrafica.com/"><img src="https://static.wixstatic.com/media/950c4b_7d12c0de6c83425da70251761311af20~mv2.jpg" alt="Lupa Gráfica" width="400" height="300" loading="lazy"></a></li><li><a href="https://www.instagram.com/impulsodeportivo_ok/"><img src="https://static.wixstatic.com/media/950c4b_d73877e71b394abab57b0a4d4476aac9~mv2.jpg" alt="Impulso Deportivo" width="400" height="300" loading="lazy"></a></li><li><a href="https://www.instagram.com/venka.ok/"><img src="https://static.wixstatic.com/media/950c4b_a8d173b464c24080b4f10df32b2a7f67~mv2.jpg" alt="Venka" width="400" height="300" loading="lazy"></a></li><li><a href="https://www.instagram.com/clubesdebarriounidos/"><img src="https://static.wixstatic.com/media/950c4b_3130963ba6e14a8e8ba101fc96a55ab6~mv2.jpg" alt="FESCBU" width="400" height="300" loading="lazy"></a></li><li><a href="https://estilosoap1.empretienda.com.ar/"><img src="https://static.wixstatic.com/media/950c4b_38253811b5be41f8a294c5e3c887a8dd~mv2.jpg" alt="Acazia" width="400" height="300" loading="lazy"></a></li><li><a href="https://www.instagram.com/esbra_ok/"><img src="https://static.wixstatic.com/media/950c4b_9f3ee4359c2e47c3bb9783e178767b01~mv2.jpg" alt="ESBRA" width="400" height="300" loading="lazy"></a></li></ul><ul class="logos__group" aria-hidden="true"><li><a href="https://lupagrafica.com/" tabindex="-1"><img src="https://static.wixstatic.com/media/950c4b_7d12c0de6c83425da70251761311af20~mv2.jpg" alt="" width="400" height="300" loading="lazy"></a></li><li><a href="https://www.instagram.com/impulsodeportivo_ok/" tabindex="-1"><img src="https://static.wixstatic.com/media/950c4b_d73877e71b394abab57b0a4d4476aac9~mv2.jpg" alt="" width="400" height="300" loading="lazy"></a></li><li><a href="https://www.instagram.com/venka.ok/" tabindex="-1"><img src="https://static.wixstatic.com/media/950c4b_a8d173b464c24080b4f10df32b2a7f67~mv2.jpg" alt="" width="400" height="300" loading="lazy"></a></li><li><a href="https://www.instagram.com/clubesdebarriounidos/" tabindex="-1"><img src="https://static.wixstatic.com/media/950c4b_3130963ba6e14a8e8ba101fc96a55ab6~mv2.jpg" alt="" width="400" height="300" loading="lazy"></a></li><li><a href="https://estilosoap1.empretienda.com.ar/" tabindex="-1"><img src="https://static.wixstatic.com/media/950c4b_38253811b5be41f8a294c5e3c887a8dd~mv2.jpg" alt="" width="400" height="300" loading="lazy"></a></li><li><a href="https://www.instagram.com/esbra_ok/" tabindex="-1"><img src="https://static.wixstatic.com/media/950c4b_9f3ee4359c2e47c3bb9783e178767b01~mv2.jpg" alt="" width="400" height="300" loading="lazy"></a></li></ul></div>
       </div>
     </section>
   </main>
@@ -364,7 +413,7 @@
       <div class="footer__brand">
         <span class="crest crest--lg" aria-hidden="true"></span>
         <p class="footer__name">Club Social y Deportivo Villa Sahores</p>
-        <p>Santo Tomé 2496, Villa del Parque, CABA</p>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Santo+Tom%C3%A9+2496%2C+Villa+del+Parque%2C+CABA">Santo Tomé 2496, Villa del Parque, CABA</a>
         <p>Tel. 4584-7174 · WhatsApp +54 9 11 7640-2245</p>
         <p>clubvillasahores@gmail.com</p>
       </div>
@@ -393,13 +442,14 @@
         <a href="https://www.youtube.com/channel/UChaa_Bnt4wjDdd_SjJfx7qw">Sahores Stream</a>
       </nav>
     </div>
+    <p class="footer__mark" aria-hidden="true">Villa Sahores</p>
     <div class="wrap footer__legal">
       <p>© <span id="anio">2026</span> Club Social y Deportivo Villa Sahores. Todos los derechos reservados.</p>
       <a href="#inicio">Volver arriba</a>
     </div>
   </footer>
 
-  <a class="wa" href="https://wa.me/5491176402245" aria-label="Escribir al club por WhatsApp">WhatsApp</a>
+  <a class="wa" href="https://wa.me/5491176402245" aria-label="Escribir al club por WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/><path d="M9 10.5h6M9 13.5h4"/></svg><span>WhatsApp</span></a>
 
   <script src="js/main.js"></script>
 </body>
