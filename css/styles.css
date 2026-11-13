@@ -1065,3 +1065,6 @@ html:not(.js) .hl path { stroke-dashoffset: 0; }
 .rules__col--no .rules__badge, .rules__col--ok .rules__badge { filter: saturate(.9); }
 .tile--quiet .tile__icon { background: rgba(255, 255, 255, .12); }
 .footer { scroll-margin-top: var(--header-h); }
+/* En desktop el contenedor del botón de menú queda vacío: se oculta para que los links queden a la derecha */
+@media (min-width: 1081px) { .header__end { display: none; } }
+@media (min-width: 1081px) { .nav { margin-right: -10px; } }
