@@ -6,25 +6,6 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasIO = 'IntersectionObserver' in window;
 
-  /* ---------- Modo claro / oscuro ----------
-     Arranca en oscuro; la elección queda guardada en este navegador. */
-  var toggle = document.querySelector('.theme-toggle');
-  var metaTheme = document.querySelector('meta[name="theme-color"]');
-  var aplicarTema = function (t) {
-    root.setAttribute('data-theme', t);
-    if (metaTheme) metaTheme.setAttribute('content', t === 'dark' ? '#061a10' : '#0c802d');
-    if (toggle) toggle.setAttribute('aria-label', t === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
-  };
-  aplicarTema(root.getAttribute('data-theme') || 'dark');
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      var cambiar = function () { aplicarTema(t); };
-      if (document.startViewTransition && !reduce) document.startViewTransition(cambiar); else cambiar();
-      try { localStorage.setItem('tema', t); } catch (e) { /* sin almacenamiento: dura hasta recargar */ }
-    });
-  }
-
   /* ---------- Cabecera: cambia al hacer scroll ---------- */
   var head = document.getElementById('site-head');
   var wa = document.querySelector('.wa');
