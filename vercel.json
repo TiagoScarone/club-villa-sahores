@@ -1,3 +1,20 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/visión-misión-y-objetivos",
+      "destination": "/vision-mision-y-objetivos",
+      "permanent": true
+    },
+    {
+      "source": "/visi%C3%B3n-misi%C3%B3n-y-objetivos",
+      "destination": "/vision-mision-y-objetivos",
+      "permanent": true
+    },
+    {
+      "source": "/sahores-fitness",
+      "destination": "/fitness",
+      "permanent": true
+    }
+  ]
 }

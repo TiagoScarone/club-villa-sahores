@@ -295,20 +295,23 @@
   /* ---------- Escudo-moneda del hero: gira con el mouse ---------- */
   var coin = document.getElementById('coin');
   if (coin) {
-    var edge = coin.querySelector('.coin__edge');
-    var GROSOR = 18;
-    for (var c = 1; c <= GROSOR; c++) {
-      var capa = document.createElement('i');
-      capa.style.transform = 'translateZ(' + (-c) + 'px)';
-      edge.appendChild(capa);
-    }
     var lines = document.querySelector('.hero__lines');
     var heroEl = document.querySelector('.hero');
     var finePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
-    if (reduce) {
-      coin.style.setProperty('--ry', '-10deg');
-    } else if (!finePointer) {
-      coin.classList.add('is-idle');
+    /* En celulares y tablets (y con "reducir movimiento") el escudo va plano:
+       Safari en iPhone dibuja mal las capas 3D del canto y la cara desaparece. */
+    var plano = reduce || !finePointer;
+    if (!plano) {
+      var edge = coin.querySelector('.coin__edge');
+      var GROSOR = 18;
+      for (var c = 1; c <= GROSOR; c++) {
+        var capa = document.createElement('i');
+        capa.style.transform = 'translateZ(' + (-c) + 'px)';
+        edge.appendChild(capa);
+      }
+    }
+    if (plano) {
+      coin.classList.add('is-flat');
     } else {
       var target = { x: 0, y: 0 }, curr = { x: 0, y: 0 }, activo = false, rafC;
       coin.classList.add('is-idle');
@@ -414,6 +417,36 @@
       } catch (err) {
         fallback();
       }
+    });
+  });
+
+  /* ---------- Formularios: arman un mail listo para enviar ----------
+     El sitio no tiene servidor: al enviar, se abre el correo de la persona
+     con el destinatario, el asunto y los datos ya completos. */
+  document.querySelectorAll('form[data-mailto]').forEach(function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (f.reportValidity && !f.reportValidity()) return;
+      var lineas = [];
+      f.querySelectorAll('input, textarea').forEach(function (el) {
+        var val = el.value.trim();
+        if (!el.name || !val) return;
+        var lbl = f.querySelector('label[for="' + el.id + '"]');
+        var nombre = lbl ? lbl.firstChild.textContent.replace(/[*:]/g, '').trim() : el.name;
+        lineas.push(nombre + ': ' + val);
+      });
+      var asunto = f.dataset.subject || 'Consulta desde la web';
+      if (f.dataset.subjectFields) {
+        var extra = f.dataset.subjectFields.split(',').map(function (n) {
+          var el = f.elements[n.trim()]; return el ? el.value.trim() : '';
+        }).filter(Boolean).join(', ');
+        if (extra) asunto += ' – ' + extra;
+      }
+      window.location.href = 'mailto:' + f.dataset.mailto +
+        '?subject=' + encodeURIComponent(asunto) +
+        '&body=' + encodeURIComponent(lineas.join('\n'));
+      var ok = f.querySelector('.form__ok');
+      if (ok) ok.hidden = false;
     });
   });
 
