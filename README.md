@@ -23,3 +23,17 @@ con el `id` del archivo en Wix y un `alt`. Para sumar un espacio o una foto, edi
 
 Cada página tiene la cabecera y el footer copiados de `index.html`. El header de cada deporte usa
 el ícono de la actividad; solo Natación tiene foto de fondo.
+
+## Páginas del club
+
+Institucional (`institucional`, `historia`, `autoridades`, `presidentes`, `vision-mision-y-objetivos`, `nuestros-valores`),
+Administración (`administracion`, `valores-de-cuota-social`, `aranceles-actividades`, `aranceles-de-alquileres`, `formularios`,
+`renuncia-socio-a`), `actividades`, `pileta`, `cumpleanos`, `colonia`, `turismo-sahores`, `convenio-crlm`, `equidad`,
+`sahores-solidario`, `contacto` y `mapa-del-sitio`. Usan los mismos nombres que el sitio de Wix, así los links viejos siguen
+funcionando (`vercel.json` redirige `/visión-misión-y-objetivos` y `/sahores-fitness`).
+
+- Precios, horarios y autoridades están escritos en el HTML de cada página: cuando cambian, se editan ahí.
+- Los PDFs (cuotas, cronograma, alquileres, colonia, formularios) siguen alojados en el sitio de Wix.
+- Los formularios (Contacto, Renuncia, Comisión de Equidad) no tienen servidor: al enviar, abren el correo de la persona
+  con el mensaje armado para el mail del club.
+- En celulares y tablets el escudo del hero es plano (clase `is-flat`): las capas 3D se veían mal en Safari de iPhone.
