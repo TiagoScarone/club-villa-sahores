@@ -3,7 +3,7 @@
 Homepage del Club Social y Deportivo Villa Sahores. Sitio estático: HTML, CSS y JS, sin build.
 
 - `index.html`: homepage
-- `natacion.html`, `voleibol.html`, `basquetbol.html`, `futbol.html`, `fitness.html`: páginas de actividades (horarios, aranceles, contacto y video)
+- Páginas de actividades (horarios, aranceles, contacto y video): `aquagym`, `basquetbol`, `boxeo`, `fitness`, `folklore`, `futbol`, `gimnasia-artistica`, `kick-boxing`, `natacion`, `patin-artistico`, `pileta-libre`, `taekwondo`, `telas` y `voleibol`
 - `vercel.json`: `cleanUrls` para que las páginas se vean como `/natacion` y `/voleibol`
 - `css/styles.css`: estilos
 - `js/main.js`: menú, escudo-moneda 3D del hero, galería por espacios, cintas infinitas, videos, copiar alias y CBU

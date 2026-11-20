@@ -15,6 +15,16 @@
       "source": "/sahores-fitness",
       "destination": "/fitness",
       "permanent": true
+    },
+    {
+      "source": "/gimnasia-artística",
+      "destination": "/gimnasia-artistica",
+      "permanent": true
+    },
+    {
+      "source": "/gimnasia-art%C3%ADstica",
+      "destination": "/gimnasia-artistica",
+      "permanent": true
     }
   ]
 }
