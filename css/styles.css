@@ -1290,3 +1290,8 @@ a.plan__prof:hover { color: var(--lima); }
 /* Menú: la página actual */
 .sub a[aria-current="page"] { color: var(--accent); font-weight: 700; }
 @media (max-width: 1080px) { .sub a[aria-current="page"] { color: var(--lima); } }
+@media (max-width: 520px) {
+  .ptable th, .ptable td { padding: 11px 12px; font-size: .88rem; }
+  .ptable thead th { font-size: .62rem; letter-spacing: .06em; }
+  .ptable thead .num { white-space: normal; }
+}
